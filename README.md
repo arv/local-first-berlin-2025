@@ -1,4 +1,4 @@
-# Workshop
+\*\*\*\*# Workshop
 
 - Clone repository
 
@@ -18,7 +18,7 @@ export createSchema
 
 - npm run dev:zero-cache
 
-- Open \_\_root.tx and add new Zero and ZeroProvider
-- change to ssr: false,
+- Add Zero to index.tsx
+- ssr: false
 
-- Add useZero to index.tsx
+- Create a basic query
