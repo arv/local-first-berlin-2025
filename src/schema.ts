@@ -39,7 +39,7 @@ const track = table('track')
   })
   .primaryKey('id');
 
-const artistAlbum = relationships(artist, ({many}) => ({
+const artistRelations = relationships(artist, ({many}) => ({
   albums: many({
     sourceField: ['id'],
     destField: ['artistID'],
@@ -47,18 +47,43 @@ const artistAlbum = relationships(artist, ({many}) => ({
   }),
 }));
 
-const albumTrack = relationships(album, ({many}) => ({
+const albumRelations = relationships(album, ({many}) => ({
   tracks: many({
     sourceField: ['id'],
     destField: ['albumID'],
     destSchema: track,
   }),
+  artists: many({
+    sourceField: ['artistID'],
+    destField: ['id'],
+    destSchema: artist,
+  }),
+}));
+
+const trackRelations = relationships(track, ({many, one}) => ({
+  album: one({
+    sourceField: ['albumID'],
+    destField: ['id'],
+    destSchema: album,
+  }),
+  artists: many(
+    {
+      sourceField: ['albumID'],
+      destField: ['id'],
+      destSchema: album,
+    },
+    {
+      sourceField: ['artistID'],
+      destField: ['id'],
+      destSchema: artist,
+    },
+  ),
 }));
 
 export const schema = createSchema({
   tables: [artist, album, track],
 
-  relationships: [artistAlbum, albumTrack],
+  relationships: [artistRelations, albumRelations, trackRelations],
 });
 
 export type Schema = typeof schema;
