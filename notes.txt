@@ -1,0 +1,108 @@
+INITIALS=arv-temp
+PG_APP_NAME=$INITIALS-lf-zero-pg
+PG_PASSWORD=ebcbfabdcafdbffb
+CACHE_APP_NAME=$INITIALS-lf-zero-cache
+CONNECTION_STRING="postgres://postgres:$PG_PASSWORD@$PG_APP_NAME.flycast:5432"
+ZERO_VERSION=$(npm show @rocicorp/zero version)
+
+
+fly postgres create \
+  --name $PG_APP_NAME \
+  --region fra \
+  --initial-cluster-size 1 \
+  --vm-size shared-cpu-2x \
+  --volume-size 40 \
+  --password=$PG_PASSWORD
+
+Postgres cluster arv-temp-lf-zero-pg created
+  Username:    postgres
+  Password:    ebcbfabdcafdbffb
+  Hostname:    arv-temp-lf-zero-pg.internal
+  Flycast:     fdaa:c:1b1f:0:1::4
+  Proxy port:  5432
+  Postgres port:  5433
+  Connection string: postgres://postgres:ebcbfabdcafdbffb@arv-temp-lf-zero-pg.flycast:5432
+
+OLD                           Postgres cluster arv-temp-lf-zero created
+                                Username:    postgres
+                                Password:    ebcbfabdcafdbffb
+                                Hostname:    arv-temp-lf-zero.internal
+                                Flycast:     fdaa:c:1b1f:0:1::3
+                                Proxy port:  5432
+                                Postgres port:  5433
+                                Connection string: postgres://postgres:ebcbfabdcafdbffb@arv-temp-lf-zero.flycast:5432
+
+
+
+$  fly ips list --app $PG_APP_NAME
+VERSION	IP                	TYPE   	REGION	CREATED AT 
+v6     	fdaa:c:1b1f:0:1::3	private	global	5m6s ago  	
+
+
+$ fly ips allocate-v6 --app $PG_APP_NAME
+
+VERSION	IP                    	TYPE              	REGION	CREATED AT 
+v6     	2a09:8280:1::76:8d78:0	public (dedicated)	global	just now  	
+
+
+pgcli "postgres://postgres:ebcbfabdcafdbffb@localhost:5433/arv-temp-lf-zero"
+
+ALTER SYSTEM SET wal_level = logical
+
+fly postgres restart $PG_APP_NAME
+
+fly proxy 5433:5432 -a $PG_APP_NAME
+
+
+
+SET search_path TO musicbrainz;
+
+
+
+
+
+cat <<EOF > fly.toml
+app = "$CACHE_APP_NAME"
+primary_region = 'fra'
+
+[build]
+image = "registry.hub.docker.com/rocicorp/zero:${ZERO_VERSION}"
+
+[http_service]
+internal_port = 4848
+force_https = true
+auto_stop_machines = 'off'
+min_machines_running = 1
+
+[[http_service.checks]]
+grace_period = "10s"
+interval = "30s"
+method = "GET"
+timeout = "5s"
+path = "/"
+
+[[vm]]
+memory = '2gb'
+cpu_kind = 'shared'
+cpus = 2
+
+[mounts]
+source = "pg_data"
+destination = "/data"
+
+[env]
+ZERO_REPLICA_FILE = "/data/sync-replica.db"
+ZERO_UPSTREAM_DB="${CONNECTION_STRING}/lf-zero?sslmode=disable"
+ZERO_CVR_DB="${CONNECTION_STRING}/lf-zero_cvr?sslmode=disable"
+ZERO_CHANGE_DB="${CONNECTION_STRING}/lf-zero_cdb?sslmode=disable"
+ZERO_AUTH_SECRET="secretkey"
+LOG_LEVEL = "debug"
+EOF
+
+
+docker exec -t musicbrainz-docker-db-1 pg_dump \
+  -U musicbrainz \
+  --schema-only \
+  --no-owner \
+  --no-privileges \
+  -d musicbrainz_db > schema.sql
