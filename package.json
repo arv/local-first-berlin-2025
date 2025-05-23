@@ -4,34 +4,39 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev:ui": "vite",
+    "dev:ui": "vinxi dev",
     "dev:zero-cache": "zero-cache-dev -p src/schema.ts",
     "dev:db-up": "docker compose --env-file .env -f ./docker/docker-compose.yml up",
     "dev:db-down": "docker compose --env-file .env -f ./docker/docker-compose.yml down",
     "dev:clean": "source .env && docker volume rm -f docker_zero_lf_pgdata && rm -rf \"${ZERO_REPLICA_FILE}\"*",
-    "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "postinstall": "node get-seed-sql.js"
+    "postinstall": "node get-seed-sql.js",
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
   },
   "dependencies": {
     "@dotenvx/dotenvx": "^1.44.1",
-    "@rocicorp/zero": "^0.20.2025052001",
-    "fastify": "^5.3.3",
+    "@rocicorp/zero": "^0.20.2025052100",
+    "@tanstack/react-router": "^1.120.7",
+    "@tanstack/react-start": "^1.120.7",
+    "cli-progress": "^3.12.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "wouter": "^3.7.0"
+    "vinxi": "^0.5.6"
   },
   "devDependencies": {
-    "@eslint/js": "^9.25.0",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react": "^4.4.1",
-    "eslint": "^9.25.0",
+    "@eslint/js": "^9.27.0",
+    "@types/react": "^19.1.5",
+    "@types/react-dom": "^19.1.5",
+    "@vitejs/plugin-react": "^4.5.0",
+    "eslint": "^9.27.0",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "globals": "^16.0.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.1.0",
     "typescript": "~5.8.3",
-    "typescript-eslint": "^8.30.1",
-    "vite": "^6.3.5"
+    "typescript-eslint": "^8.32.1",
+    "vite": "^6.3.5",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }

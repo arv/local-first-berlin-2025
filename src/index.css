@@ -13,6 +13,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.winner {
+  font-size: 200%;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -23,8 +27,7 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
+  margin: 1rem;
   min-width: 320px;
   min-height: 100vh;
 }

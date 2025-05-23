@@ -1,4 +1,3 @@
-import type {ReadonlyJSONValue} from '@rocicorp/zero';
 import {
   PostgresJSConnection,
   PushProcessor,
@@ -15,9 +14,6 @@ const processor = new PushProcessor(
   ),
 );
 
-export async function handlePush(
-  params: Record<string, string> | URLSearchParams,
-  body: ReadonlyJSONValue,
-) {
-  return processor.process(mutators, params, body);
+export async function handlePush(request: Request) {
+  return processor.process(mutators, request);
 }
