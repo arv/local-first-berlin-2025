@@ -1,5 +1,5 @@
 import {
-  ANYONE_CAN_DO_ANYTHING,
+  ANYONE_CAN,
   createSchema,
   definePermissions,
   number,
@@ -25,17 +25,7 @@ const album = table('album')
     artistID: string().from('artist_id'),
     title: string(),
     year: number().optional(),
-  })
-  .primaryKey('id');
-
-const track = table('track')
-  .columns({
-    id: string(),
-    albumID: string().from('album_id'),
-    position: number(),
-    discNumber: number().from('disc_number').optional(),
-    title: string(),
-    duration: number().from('duration_ms').optional(),
+    votes: number(),
   })
   .primaryKey('id');
 
@@ -48,11 +38,6 @@ const artistRelations = relationships(artist, ({many}) => ({
 }));
 
 const albumRelations = relationships(album, ({many}) => ({
-  tracks: many({
-    sourceField: ['id'],
-    destField: ['albumID'],
-    destSchema: track,
-  }),
   artists: many({
     sourceField: ['artistID'],
     destField: ['id'],
@@ -60,36 +45,14 @@ const albumRelations = relationships(album, ({many}) => ({
   }),
 }));
 
-const trackRelations = relationships(track, ({many, one}) => ({
-  album: one({
-    sourceField: ['albumID'],
-    destField: ['id'],
-    destSchema: album,
-  }),
-  artists: many(
-    {
-      sourceField: ['albumID'],
-      destField: ['id'],
-      destSchema: album,
-    },
-    {
-      sourceField: ['artistID'],
-      destField: ['id'],
-      destSchema: artist,
-    },
-  ),
-}));
-
 export const schema = createSchema({
-  tables: [artist, album, track],
-
-  relationships: [artistRelations, albumRelations, trackRelations],
+  tables: [album, artist],
+  relationships: [albumRelations, artistRelations],
 });
 
 export type Schema = typeof schema;
 
 export const permissions = definePermissions(schema, () => ({
-  artist: ANYONE_CAN_DO_ANYTHING,
-  album: ANYONE_CAN_DO_ANYTHING,
-  track: ANYONE_CAN_DO_ANYTHING,
+  artist: {row: {select: ANYONE_CAN}},
+  album: {row: {select: ANYONE_CAN}},
 }));

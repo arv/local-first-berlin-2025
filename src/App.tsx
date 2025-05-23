@@ -6,12 +6,14 @@ import './App.css';
 import {Artist} from './Artist.tsx';
 import {Artists} from './Artists.tsx';
 import {schema} from './schema.ts';
+import {mutators} from './shared/mutators.ts';
 
 export function App() {
   const zero = new Zero({
     userID: 'anon',
     server: import.meta.env.VITE_PUBLIC_SERVER,
     schema,
+    mutators,
   });
 
   return (

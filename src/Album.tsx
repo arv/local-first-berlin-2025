@@ -5,33 +5,27 @@ export function Album({albumID}: {albumID: string}) {
   const z = useZero();
 
   const [album] = useQuery(
-    z.query.album
-      .where('id', albumID)
-      .related('artists')
-      .related('tracks', (q) =>
-        q.orderBy('discNumber', 'asc').orderBy('position', 'asc'),
-      )
-      .one(),
+    z.query.album.where('id', albumID).related('artists').one(),
     {
       ttl: '1m',
     },
   );
 
+  if (!album) {
+    return null;
+  }
+
   return (
     <div>
       <h3>
-        {album?.artists?.map((artist) => artist.name).join(', ')} -{' '}
-        {album?.title}
+        {album.artists?.map((artist) => artist.name).join(', ')} - {album.title}
       </h3>
 
-      {album?.tracks.map((track) => (
-        <div key={track.id}>
-          <div>
-            {track.discNumber} - {track.position} - {track.title}
-            {track.duration ? ` (${track.duration}ms)` : ''}
-          </div>
-        </div>
-      ))}
+      <h2>Votes: {album.votes}</h2>
+      <p>
+        <button onClick={() => z.mutate.upVote({id: albumID})}>👍</button>
+        <button onClick={() => z.mutate.downVote({id: albumID})}>👎</button>
+      </p>
     </div>
   );
 }

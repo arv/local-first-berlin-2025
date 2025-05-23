@@ -10,9 +10,11 @@
     "dev:db-down": "docker compose --env-file .env -f ./docker/docker-compose.yml down",
     "dev:clean": "source .env && docker volume rm -f docker_zero_lf_pgdata && rm -rf \"${ZERO_REPLICA_FILE}\"*",
     "build": "tsc -b && vite build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "postinstall": "node get-seed-sql.js"
   },
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.44.1",
     "@rocicorp/zero": "^0.20.2025052001",
     "fastify": "^5.3.3",
     "react": "^19.1.0",

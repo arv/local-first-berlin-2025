@@ -22,3 +22,5 @@ export createSchema
 - ssr: false
 
 - Create a basic query
+
+- `alter table album add column votes int default 0;`
