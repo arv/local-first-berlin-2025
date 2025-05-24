@@ -18,3 +18,5 @@ node_modules
 /blob-report/
 /playwright/.cache/
 docker/seed.sql
+
+notes.md
