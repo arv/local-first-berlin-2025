@@ -46,7 +46,7 @@ function TopTen() {
         )}
       </div>
 
-      {topTen.slice(1).map((album) => (
+      {topTen.slice(1).map(album => (
         <div key={album.id}>
           <AlbumArtistsAndVotes album={album} />
         </div>
@@ -65,11 +65,10 @@ function AlbumArtistsAndVotes({
 }) {
   return (
     <>
-      {' '}
-      <AlbumLink id={album.id} title={album.title} /> -{' '}
+      <AlbumLink album={album} /> -{' '}
       {commas(
-        album.artists.map((artist) => (
-          <ArtistLink key={artist.id} id={artist.id} name={artist.name} />
+        album.artists.map(artist => (
+          <ArtistLink artist={artist} key={artist.id} />
         )),
       )}{' '}
       {album.votes} votes
@@ -112,14 +111,14 @@ function AllAlbums() {
         type="text"
         className="search-input"
         value={textFilter ?? ''}
-        onChange={(e) => setTextFilter(e.currentTarget.value)}
+        onChange={e => setTextFilter(e.currentTarget.value)}
         placeholder="Search…"
         autoFocus={true}
       />
       <ul>
-        {artists.slice(0, 100).map((artist) => (
+        {artists.slice(0, 100).map(artist => (
           <li>
-            <ArtistLink key={artist.id} id={artist.id} name={artist.name} />
+            <ArtistLink artist={artist} />
           </li>
         ))}
         {artists.length > 100 && <li>And more...</li>}

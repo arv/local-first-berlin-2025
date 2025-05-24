@@ -1,5 +1,5 @@
-import {Link} from '@tanstack/react-router';
+import {Link} from './link.tsx';
 
-export function ArtistLink({id, name}: {id: string; name: string}) {
-  return <Link to={`/artist/${id}`}>{name}</Link>;
+export function ArtistLink({artist}: {artist: {id: string; name: string}}) {
+  return <Link href={`/artist/${artist.id}`}>{artist.name}</Link>;
 }
