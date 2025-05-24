@@ -29,6 +29,6 @@ destination = "/data"
 [env]
 ZERO_REPLICA_FILE = "/data/sync-replica.db"
 # ZERO_UPSTREAM_DB="postgresql://postgres:PASSWORD@db.mxynzmougewcnmzmfhif.supabase.co:5432/postgres?sslmode=disable"
-ZERO_PUSH_URL="local-first-berlin-2025-j4f7.vercel.app"
+ZERO_PUSH_URL="https://local-first-berlin-2025-j4f7.vercel.app/api/push"
 ZERO_AUTH_SECRET="secretkey"
 LOG_LEVEL = "debug"
