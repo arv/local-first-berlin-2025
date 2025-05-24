@@ -45,6 +45,10 @@ Install fly command line.
 INITIALS=arv
 CACHE_APP_NAME=$INITIALS-local-first-berlin-2025
 fly app create $CACHE_APP_NAME
+fly secrets set ZERO_UPSTREAM_DB="postgresql:..."
 ```
 
 ## Deploy to Vercel
+
+Set VITE_PUBLIC_SERVER="https://arv-local-first-berlin-2025.fly.dev"
+Set ZERO_UPSTREAM_DB="..."
