@@ -49,7 +49,7 @@ body {
   flex: 0 0 auto;
   border-radius: 1rem;
 
-  .top-ten-list {
+  ul {
     margin: 0;
   }
 
