@@ -1,3 +1,4 @@
+import indexCss from '@/index.css?url';
 import {
   createRootRoute,
   HeadContent,
@@ -20,6 +21,7 @@ export const Route = createRootRoute({
         title: 'ZTunes',
       },
     ],
+    links: [{rel: 'stylesheet', href: indexCss}],
   }),
   component: RootComponent,
 });

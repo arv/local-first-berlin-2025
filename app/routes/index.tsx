@@ -1,10 +1,10 @@
 import {ArtistLink} from '@/components/artist-link.tsx';
+import '@/index.css';
 import type {schema, Schema} from '@/schema.ts';
 import type {Row} from '@rocicorp/zero';
 import {useQuery, useZero} from '@rocicorp/zero/react';
 import {createFileRoute} from '@tanstack/react-router';
 import {useState} from 'react';
-import '../../src/index.css';
 
 export const Route = createFileRoute('/')({
   ssr: false,
