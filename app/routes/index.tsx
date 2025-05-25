@@ -91,7 +91,7 @@ function AllAlbums() {
         type="text"
         value={textFilter ?? ''}
         onChange={e => setTextFilter(e.currentTarget.value)}
-        placeholder="Search…"
+        placeholder="Search artists..."
         autoFocus={true}
       />
       <ul>
