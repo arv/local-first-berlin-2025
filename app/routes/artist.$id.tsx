@@ -1,4 +1,3 @@
-import {AlbumLink} from '@/components/album-link.tsx';
 import {HomeLink} from '@/components/home-link.tsx';
 import {useZero} from '@/hooks/use-zero.ts';
 import {useQuery} from '@rocicorp/zero/react';
@@ -35,7 +34,8 @@ function RouteComponent() {
       <ul>
         {artist.albums?.map(album => (
           <li key={album.id}>
-            <AlbumLink album={album} />
+            {album.title} ({album.year}) votes: {album.votes}{' '}
+            <button onClick={() => z.mutate.upVote(album.id)}>👍</button>
           </li>
         ))}
       </ul>

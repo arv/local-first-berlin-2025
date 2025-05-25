@@ -1,4 +1,3 @@
-import {AlbumLink} from '@/components/album-link.tsx';
 import {ArtistLink} from '@/components/artist-link.tsx';
 import {useZero} from '@/hooks/use-zero.ts';
 import '@/index.css';
@@ -67,11 +66,10 @@ function AlbumArtistsAndVotes({
 }) {
   return (
     <div className="top-ten-list">
-      <span>{album.votes} votes</span>{' '}
-      <AlbumLink id={album.id} title={album.title} /> &nbsp;-&nbsp;{' '}
+      <span>{album.votes} votes</span> {album.title} &nbsp;-&nbsp;{' '}
       {commas(
         album.artists.map(artist => (
-          <ArtistLink key={artist.id} id={artist.id} name={artist.name} />
+          <ArtistLink key={artist.id} artist={artist} />
         )),
       )}{' '}
     </div>
