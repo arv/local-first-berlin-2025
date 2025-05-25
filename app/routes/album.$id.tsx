@@ -1,7 +1,8 @@
 import {ArtistLink} from '@/components/artist-link.tsx';
 import {HomeLink} from '@/components/home-link.tsx';
-import {useZero} from '@/hooks/use-zero.ts';
-import {useQuery} from '@rocicorp/zero/react';
+import type {Mutators} from '@/mutators.ts';
+import type {Schema} from '@/schema.ts';
+import {useQuery, useZero} from '@rocicorp/zero/react';
 import {createFileRoute} from '@tanstack/react-router';
 
 export const Route = createFileRoute('/album/$id')({
@@ -11,7 +12,7 @@ export const Route = createFileRoute('/album/$id')({
 
 function RouteComponent() {
   const {id} = Route.useParams();
-  const z = useZero();
+  const z = useZero<Schema, Mutators>();
   const [album, result] = useQuery(
     z.query.album.where('id', id).one().related('artists'),
     {
@@ -36,8 +37,7 @@ function RouteComponent() {
         ))}
       </h2>
       <div>Votes: {album.votes}</div>
-      <button onClick={() => z.mutate.upVote({id: album.id})}>👍</button>
-      <button onClick={() => z.mutate.downVote({id: album.id})}>👎</button>
+      <button onClick={() => z.mutate.upVote(album.id)}>👍</button>
     </>
   );
 }
