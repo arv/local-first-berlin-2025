@@ -53,19 +53,16 @@ body {
   display: flex;
   align-items: center;
   margin-top: 1rem;
-}
 
-.votes-count {
-  color: #fc218a;
-  border: 1px solid #fc218a;
-  border-radius: 0.25rem;
-  font-size: 0.75rem;
-  padding: 0.25rem 0.35rem;
-  font-weight: 800;
-  margin-right: 1rem;
-}
-
-.winner {
+  span:first-child {
+    color: #fc218a;
+    border: 1px solid #fc218a;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.35rem;
+    font-weight: 800;
+    margin-right: 1rem;
+  }
 }
 
 a {

@@ -40,7 +40,7 @@ function TopTen() {
   return (
     <div className="top-ten">
       <h2>Top Ten Albums</h2>
-      <div className="winner">
+      <div>
         {topTen.length > 0 ? (
           <AlbumArtistsAndVotes album={topTen[0]} />
         ) : (
@@ -67,7 +67,7 @@ function AlbumArtistsAndVotes({
 }) {
   return (
     <div className="top-ten-list">
-      <span className="votes-count">{album.votes} votes</span>{' '}
+      <span>{album.votes} votes</span>{' '}
       <AlbumLink id={album.id} title={album.title} /> &nbsp;-&nbsp;{' '}
       {commas(
         album.artists.map(artist => (
@@ -111,7 +111,6 @@ function AllAlbums() {
       <h2>All Albums</h2>
       <input
         type="text"
-        className="search-input"
         value={textFilter ?? ''}
         onChange={e => setTextFilter(e.currentTarget.value)}
         placeholder="Search…"
