@@ -1,7 +1,6 @@
 import {ArtistLink} from '@/components/artist-link.tsx';
 import '@/index.css';
-import type {schema, Schema} from '@/schema.ts';
-import type {Row} from '@rocicorp/zero';
+import type {Schema} from '@/schema.ts';
 import {useQuery, useZero} from '@rocicorp/zero/react';
 import {createFileRoute} from '@tanstack/react-router';
 import {useState} from 'react';
@@ -16,7 +15,7 @@ function Home() {
     <>
       <h1>ztunes</h1>
 
-      <div className="main-container">
+      <div className="main">
         <AllAlbums />
         <TopTen />
       </div>
@@ -38,42 +37,21 @@ function TopTen() {
   return (
     <div className="top-ten">
       <h2>Top Ten Albums</h2>
-      <div>
-        {topTen.length > 0 ? (
-          <AlbumArtistsAndVotes album={topTen[0]} />
-        ) : (
-          'None'
-        )}
-      </div>
-
-      {topTen.slice(1).map(album => (
-        <div key={album.id}>
-          <AlbumArtistsAndVotes album={album} />
-        </div>
-      ))}
-    </div>
-  );
-}
-
-type AlbumRow = Row<typeof schema.tables.album>;
-type ArtistRow = Row<typeof schema.tables.artist>;
-
-function AlbumArtistsAndVotes({
-  album,
-}: {
-  album: AlbumRow & {artists: readonly ArtistRow[]};
-}) {
-  return (
-    <div className="top-ten-list">
-      <span>
-        {album.title} &nbsp;-&nbsp;{' '}
-        {commas(
-          album.artists.map(artist => (
-            <ArtistLink key={artist.id} artist={artist} />
-          )),
-        )}{' '}
-      </span>
-      <span>{album.votes} votes</span>{' '}
+      <ul className="top-ten-list">
+        {topTen.map(album => (
+          <li key={album.id}>
+            <span>
+              {album.title} &nbsp;-&nbsp;{' '}
+              {commas(
+                album.artists.map(artist => (
+                  <ArtistLink key={artist.id} artist={artist} />
+                )),
+              )}{' '}
+            </span>
+            <span>{album.votes} votes</span>{' '}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -107,7 +85,7 @@ function AllAlbums() {
   const [artists] = useQuery(q, {ttl: '1m'});
 
   return (
-    <div className="album-search">
+    <div className="albums">
       <h2>All Albums</h2>
       <input
         type="text"

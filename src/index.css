@@ -19,19 +19,19 @@ body {
   min-height: 100vh;
 }
 
-.main-container {
+.main {
   display: flex;
   flex-direction: row;
   gap: 4rem;
 }
 
 .top-ten,
-.album-search {
+.albums {
   display: flex;
   flex-direction: column;
 }
 
-.album-search {
+.albums {
   flex: 1;
 
   h2 {
@@ -48,50 +48,85 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.3);
   flex: 0 0 auto;
   border-radius: 1rem;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    margin-top: 1rem;
+    justify-content: space-between;
+
+    span:nth-child(2) {
+      color: #fc218a;
+      border: 1px solid #fc218a;
+      border-radius: 0.25rem;
+      font-size: 1.5rem;
+      padding: 0.25rem 0.5rem;
+      font-weight: 800;
+      text-align: center;
+      margin-left: auto;
+    }
+
+    span:first-child {
+      font-size: 1.5rem;
+      font-weight: 800;
+      align-self: start;
+      text-align: left;
+      margin-left: 0;
+    }
+  }
 }
 
-.top-ten-list {
-  display: flex;
-  align-items: center;
-  gap: 4rem;
-  margin-top: 1rem;
-  justify-content: space-between;
-}
+.artist-page {
+  li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 
-.top-ten-list span:nth-child(2) {
-  color: #fc218a;
-  border: 1px solid #fc218a;
-  border-radius: 0.25rem;
-  font-size: 1.5rem;
-  padding: 0.25rem 0.5rem;
-  font-weight: 800;
-  text-align: center;
-  margin-left: auto;
-}
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      background-color: transparent;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      font-size: 24px;
 
-.top-ten-list span:first-child {
-  font-size: 1.5rem;
-  font-weight: 800;
-  align-self: start;
-  text-align: left;
-  margin-left: 0;
-}
+      &:hover {
+        background-color: #fc218a;
+        transform: scale(1.05);
+      }
 
-.votes-count-large {
-  color: #fc218a;
-  border: 2px solid #fc218a;
-  border-radius: 0.25rem;
-  font-size: 1rem;
-  padding: 0.25rem 0.6rem;
-  font-weight: 800;
-  margin-right: 1rem;
-}
+      &:active {
+        transform: scale(0.95);
+        outline: none;
+      }
 
-.artist-page-album-detail {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
+      &:focus,
+      &:focus-visible {
+        outline: none;
+      }
+    }
+
+    .year {
+      opacity: 0.5;
+    }
+
+    .votes {
+      color: #fc218a;
+      border: 2px solid #fc218a;
+      border-radius: 0.25rem;
+      font-size: 1rem;
+      padding: 0.25rem 0.6rem;
+      font-weight: 800;
+      margin-right: 1rem;
+    }
+  }
 }
 
 a {
@@ -194,44 +229,6 @@ button:focus-visible {
   font-size: 2rem;
 }
 
-.album-year {
-  opacity: 0.5;
-}
-
-.thumbs-up-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 20px;
-  background-color: transparent;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-}
-
-.thumbs-up-button:hover {
-  background-color: #fc218a;
-  transform: scale(1.05);
-}
-
-.thumbs-up-button:active {
-  transform: scale(0.95);
-  outline: none;
-}
-
-.thumbs-up-button:focus,
-.thumbs-up-button:focus-visible {
-  outline: none;
-}
-
-.thumbs-up-icon {
-  font-size: 24px;
-}
-
 @media (max-width: 1200px) {
   h1 {
     font-size: clamp(3rem, 8vw, 6rem);
@@ -247,7 +244,7 @@ button:focus-visible {
 }
 
 @media (max-width: 960px) {
-  .main-container {
+  .main {
     flex-direction: column-reverse;
   }
 
