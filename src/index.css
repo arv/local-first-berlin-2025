@@ -41,6 +41,7 @@ body {
 
 .top-ten {
   position: sticky;
+  display: flex;
   padding: 2rem;
   top: 3rem;
   align-self: flex-start;
@@ -52,17 +53,28 @@ body {
 .top-ten-list {
   display: flex;
   align-items: center;
+  gap: 4rem;
   margin-top: 1rem;
+  justify-content: space-between;
+}
 
-  span:first-child {
-    color: #fc218a;
-    border: 1px solid #fc218a;
-    border-radius: 0.25rem;
-    font-size: 0.75rem;
-    padding: 0.25rem 0.35rem;
-    font-weight: 800;
-    margin-right: 1rem;
-  }
+.top-ten-list span:nth-child(2) {
+  color: #fc218a;
+  border: 1px solid #fc218a;
+  border-radius: 0.25rem;
+  font-size: 1.5rem;
+  padding: 0.25rem 0.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-left: auto;
+}
+
+.top-ten-list span:first-child {
+  font-size: 1.5rem;
+  font-weight: 800;
+  align-self: start;
+  text-align: left;
+  margin-left: 0;
 }
 
 .votes-count-large {
@@ -95,6 +107,7 @@ h1 {
   font-size: 8rem;
   line-height: 1.1;
   margin: 0 0 3rem;
+  letter-spacing: -0.25rem;
 }
 
 h2 {
@@ -177,35 +190,32 @@ button:focus-visible {
   }
 }
 
+.home-link {
+  font-size: 2rem;
+}
+
+.album-year {
+  opacity: 0.5;
+}
+
 .thumbs-up-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 10px 20px;
-  border-radius: 1rem;
-  background-color: #646cff;
+  background-color: transparent;
   color: white;
   font-size: 16px;
   font-weight: bold;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
   text-decoration: none;
-
-  .thumbs-up-icon {
-    filter: saturate(0);
-  }
 }
 
 .thumbs-up-button:hover {
   background-color: #fc218a;
-  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
   transform: scale(1.05);
-
-  .thumbs-up-icon {
-    filter: saturate(1);
-  }
 }
 
 .thumbs-up-button:active {
