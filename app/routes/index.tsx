@@ -14,7 +14,7 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <>
-      <h1>ZTunes</h1>
+      <h1>ztunes</h1>
 
       <div className="main-container">
         <AllAlbums />
@@ -65,12 +65,15 @@ function AlbumArtistsAndVotes({
 }) {
   return (
     <div className="top-ten-list">
-      <span>{album.votes} votes</span> {album.title} &nbsp;-&nbsp;{' '}
-      {commas(
-        album.artists.map(artist => (
-          <ArtistLink key={artist.id} artist={artist} />
-        )),
-      )}{' '}
+      <span>
+        {album.title} &nbsp;-&nbsp;{' '}
+        {commas(
+          album.artists.map(artist => (
+            <ArtistLink key={artist.id} artist={artist} />
+          )),
+        )}{' '}
+      </span>
+      <span>{album.votes} votes</span>{' '}
     </div>
   );
 }

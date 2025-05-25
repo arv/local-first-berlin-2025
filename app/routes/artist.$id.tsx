@@ -35,7 +35,7 @@ function RouteComponent() {
       <ul>
         {artist.albums?.map(album => (
           <li className="artist-page-album-detail" key={album.id}>
-            {album.title} ({album.year}){' '}
+            {album.title} <span className="album-year">({album.year})</span>{' '}
             <span className="votes-count-large">{album.votes} votes</span>{' '}
             <button
               onClick={() => z.mutate.upVote(album.id)}
