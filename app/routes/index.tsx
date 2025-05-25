@@ -9,7 +9,7 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <>
-      <h2>Zero Music</h2>
+      <h1>ZTunes</h1>
     </>
   );
 }
