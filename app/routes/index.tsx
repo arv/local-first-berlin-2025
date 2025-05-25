@@ -16,10 +16,12 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <>
-      <h2>Zero Music</h2>
+      <h1>Zero Music</h1>
 
-      <TopTen />
-      <AllAlbums />
+      <div className="main-container">
+        <AllAlbums />
+        <TopTen />
+      </div>
     </>
   );
 }
@@ -36,7 +38,7 @@ function TopTen() {
   );
 
   return (
-    <div>
+    <div className="top-ten">
       <h2>Top Ten Albums</h2>
       <div className="winner">
         {topTen.length > 0 ? (
@@ -46,7 +48,7 @@ function TopTen() {
         )}
       </div>
 
-      {topTen.slice(1).map((album) => (
+      {topTen.slice(1).map(album => (
         <div key={album.id}>
           <AlbumArtistsAndVotes album={album} />
         </div>
@@ -64,16 +66,15 @@ function AlbumArtistsAndVotes({
   album: AlbumRow & {artists: readonly ArtistRow[]};
 }) {
   return (
-    <>
-      {' '}
+    <div className="top-ten-list">
+      <span className="votes-count">{album.votes} votes</span>{' '}
       <AlbumLink id={album.id} title={album.title} /> -{' '}
       {commas(
-        album.artists.map((artist) => (
+        album.artists.map(artist => (
           <ArtistLink key={artist.id} id={artist.id} name={artist.name} />
         )),
       )}{' '}
-      {album.votes} votes
-    </>
+    </div>
   );
 }
 
@@ -106,24 +107,24 @@ function AllAlbums() {
   const [artists] = useQuery(q, {ttl: '1m'});
 
   return (
-    <>
+    <div className="album-search">
       <h2>All Albums</h2>
       <input
         type="text"
         className="search-input"
         value={textFilter ?? ''}
-        onChange={(e) => setTextFilter(e.currentTarget.value)}
+        onChange={e => setTextFilter(e.currentTarget.value)}
         placeholder="Search…"
         autoFocus={true}
       />
       <ul>
-        {artists.slice(0, 100).map((artist) => (
+        {artists.slice(0, 100).map(artist => (
           <li>
             <ArtistLink key={artist.id} id={artist.id} name={artist.name} />
           </li>
         ))}
         {artists.length > 100 && <li>And more...</li>}
       </ul>
-    </>
+    </div>
   );
 }
