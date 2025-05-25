@@ -1,5 +1,5 @@
-import {Link} from '@tanstack/react-router';
+import {Link} from './link.tsx';
 
 export function HomeLink() {
-  return <Link to="/">Home</Link>;
+  return <Link href="/">Home</Link>;
 }

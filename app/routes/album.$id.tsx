@@ -31,8 +31,8 @@ function RouteComponent() {
       <HomeLink />
       <h1>{album.title}</h1>
       <h2>
-        {album.artists.map((artist) => (
-          <ArtistLink key={artist.id} id={artist.id} name={artist.name} />
+        {album.artists.map(artist => (
+          <ArtistLink artist={artist} key={artist.id} />
         ))}
       </h2>
       <div>Votes: {album.votes}</div>

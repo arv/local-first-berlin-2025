@@ -16,7 +16,7 @@ function RouteComponent() {
     z.query.artist
       .where('id', id)
       .one()
-      .related('albums', (q) => q.orderBy('year', 'asc')),
+      .related('albums', q => q.orderBy('year', 'asc')),
     {ttl: '1m'},
   );
 
@@ -33,9 +33,9 @@ function RouteComponent() {
       <h2>{artist.name}</h2>
       <h2>Albums</h2>
       <ul>
-        {artist.albums?.map((album) => (
+        {artist.albums?.map(album => (
           <li key={album.id}>
-            <AlbumLink id={album.id} title={album.title} />
+            <AlbumLink album={album} />
           </li>
         ))}
       </ul>

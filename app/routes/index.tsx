@@ -119,7 +119,7 @@ function AllAlbums() {
       <ul>
         {artists.slice(0, 100).map(artist => (
           <li>
-            <ArtistLink key={artist.id} id={artist.id} name={artist.name} />
+            <ArtistLink artist={artist} />
           </li>
         ))}
         {artists.length > 100 && <li>And more...</li>}

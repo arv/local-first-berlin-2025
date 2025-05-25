@@ -1,5 +1,5 @@
-import {Link} from '@tanstack/react-router';
+import {Link} from './link.tsx';
 
-export function AlbumLink({id, title}: {id: string; title: string}) {
-  return <Link to={`/album/${id}`}>{title}</Link>;
+export function AlbumLink({album}: {album: {id: string; title: string}}) {
+  return <Link href={`/album/${album.id}`}>{album.title}</Link>;
 }
