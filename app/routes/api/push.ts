@@ -15,16 +15,12 @@ const processor = new PushProcessor(
   ),
 );
 
-export async function handlePush(request: Request) {
-  return processor.process(mutators, request);
-}
-
 export const APIRoute = createAPIFileRoute('/api/push')({
   GET: () => {
     return new Response('ok');
   },
   POST: async ({request}) => {
-    const response = await handlePush(request);
+    const response = await processor.process(mutators, request);
     return Response.json(response);
   },
 });
