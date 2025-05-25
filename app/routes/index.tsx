@@ -86,7 +86,7 @@ function AllAlbums() {
 
   return (
     <div className="albums">
-      <h2>All Albums</h2>
+      <h2>All Artists</h2>
       <input
         type="text"
         value={textFilter ?? ''}
