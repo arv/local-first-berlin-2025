@@ -6,7 +6,7 @@ import {Readable} from 'node:stream';
 import {pipeline} from 'node:stream/promises';
 
 const repo = 'arv/local-first-berlin-2025';
-const tag = 'v1';
+const tag = 'v2';
 const filename = 'seed.sql';
 
 const url = `https://github.com/${repo}/releases/download/${tag}/${filename}`;
@@ -68,7 +68,7 @@ async function downloadWithProgress() {
 
   const nodeStream = Readable.fromWeb(res.body);
 
-  nodeStream.on('data', (chunk) => {
+  nodeStream.on('data', chunk => {
     downloaded += chunk.length;
     if (totalBytes) progressBar.update(Math.round(downloaded / (1024 * 1024)));
   });
@@ -99,7 +99,7 @@ async function main() {
   }
 }
 
-main().catch((err) => {
+main().catch(err => {
   console.error('Error:', err);
   process.exit(1);
 });
