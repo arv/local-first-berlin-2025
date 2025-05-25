@@ -1,3 +1,11 @@
+```sh
+pgsql postgresql://user:password@127.0.0.1:5430/postgres
+```
+
+```sql
+select count(*) from artist;
+```
+
 ```ts
 // api/push.ts
 
