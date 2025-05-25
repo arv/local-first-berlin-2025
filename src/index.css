@@ -49,6 +49,10 @@ body {
   flex: 0 0 auto;
   border-radius: 1rem;
 
+  ul {
+    margin: 0;
+  }
+
   li {
     display: flex;
     align-items: center;
@@ -58,18 +62,17 @@ body {
 
     span:nth-child(2) {
       color: #fc218a;
-      border: 1px solid #fc218a;
-      border-radius: 0.25rem;
       font-size: 1.5rem;
-      padding: 0.25rem 0.5rem;
       font-weight: 800;
-      text-align: center;
+      text-align: right;
       margin-left: auto;
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     span:first-child {
       font-size: 1.5rem;
-      font-weight: 800;
+      font-weight: 400;
       align-self: start;
       text-align: left;
       margin-left: 0;
@@ -119,12 +122,8 @@ body {
 
     .votes {
       color: #fc218a;
-      border: 2px solid #fc218a;
-      border-radius: 0.25rem;
       font-size: 1rem;
-      padding: 0.25rem 0.6rem;
       font-weight: 800;
-      margin-right: 1rem;
     }
   }
 }
@@ -142,7 +141,6 @@ h1 {
   font-size: 8rem;
   line-height: 1.1;
   margin: 0 0 3rem;
-  letter-spacing: -0.25rem;
 }
 
 h2 {
@@ -243,12 +241,14 @@ button:focus-visible {
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 1100px) {
   .main {
     flex-direction: column-reverse;
   }
 
   .top-ten {
+    padding: 0;
+    border: none;
     position: static;
     align-self: auto;
   }
