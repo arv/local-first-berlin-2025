@@ -16,10 +16,12 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <>
-      <h2>Zero Music</h2>
+      <h1>ZTunes</h1>
 
-      <TopTen />
-      <AllAlbums />
+      <div className="main-container">
+        <AllAlbums />
+        <TopTen />
+      </div>
     </>
   );
 }
@@ -36,9 +38,9 @@ function TopTen() {
   );
 
   return (
-    <div>
+    <div className="top-ten">
       <h2>Top Ten Albums</h2>
-      <div className="winner">
+      <div>
         {topTen.length > 0 ? (
           <AlbumArtistsAndVotes album={topTen[0]} />
         ) : (
@@ -64,15 +66,15 @@ function AlbumArtistsAndVotes({
   album: AlbumRow & {artists: readonly ArtistRow[]};
 }) {
   return (
-    <>
-      <AlbumLink album={album} /> -{' '}
+    <div className="top-ten-list">
+      <span>{album.votes} votes</span>{' '}
+      <AlbumLink id={album.id} title={album.title} /> &nbsp;-&nbsp;{' '}
       {commas(
         album.artists.map(artist => (
-          <ArtistLink artist={artist} key={artist.id} />
+          <ArtistLink key={artist.id} id={artist.id} name={artist.name} />
         )),
       )}{' '}
-      {album.votes} votes
-    </>
+    </div>
   );
 }
 
@@ -105,11 +107,10 @@ function AllAlbums() {
   const [artists] = useQuery(q, {ttl: '1m'});
 
   return (
-    <>
+    <div className="album-search">
       <h2>All Albums</h2>
       <input
         type="text"
-        className="search-input"
         value={textFilter ?? ''}
         onChange={e => setTextFilter(e.currentTarget.value)}
         placeholder="Search…"
@@ -123,6 +124,6 @@ function AllAlbums() {
         ))}
         {artists.length > 100 && <li>And more...</li>}
       </ul>
-    </>
+    </div>
   );
 }
