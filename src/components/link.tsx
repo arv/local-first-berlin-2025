@@ -20,7 +20,7 @@ export function Link({href, children}: {href: string; children: ReactNode}) {
   };
 
   return (
-    <a href={''} onMouseDown={handleMouseDown} onKeyDown={handleKeyDown}>
+    <a href={href} onMouseDown={handleMouseDown} onKeyDown={handleKeyDown}>
       {children}
     </a>
   );
