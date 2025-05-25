@@ -9,7 +9,8 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <>
-      <h1>ZTunes</h1>
+      <h1>ztunes</h1>
+      <div className="main"></div>
     </>
   );
 }
