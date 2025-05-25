@@ -68,7 +68,7 @@ function AlbumArtistsAndVotes({
   return (
     <div className="top-ten-list">
       <span className="votes-count">{album.votes} votes</span>{' '}
-      <AlbumLink id={album.id} title={album.title} /> -{' '}
+      <AlbumLink id={album.id} title={album.title} /> &nbsp;-&nbsp;{' '}
       {commas(
         album.artists.map(artist => (
           <ArtistLink key={artist.id} id={artist.id} name={artist.name} />

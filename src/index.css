@@ -35,7 +35,7 @@ body {
   flex: 1;
 
   h2 {
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 }
 
@@ -66,7 +66,6 @@ body {
 }
 
 .winner {
-  font-weight: 800;
 }
 
 a {
@@ -75,7 +74,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #fc218a;
 }
 
 h1 {
@@ -129,7 +128,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #fc218a;
 }
 button:focus,
 button:focus-visible {
@@ -146,7 +145,7 @@ button:focus-visible {
     color: #79bbff;
   }
   a:hover {
-    color: #535bf2;
+    color: #fc218a;
   }
 
   button {
