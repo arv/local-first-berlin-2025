@@ -4,7 +4,7 @@ import type {Row} from '@rocicorp/zero';
 import {useQuery, useZero} from '@rocicorp/zero/react';
 import {createFileRoute} from '@tanstack/react-router';
 import {useState} from 'react';
-import '../src/index.css';
+import '../../src/index.css';
 
 export const Route = createFileRoute('/')({
   ssr: false,
