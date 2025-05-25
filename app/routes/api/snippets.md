@@ -1,5 +1,8 @@
-import {mutators} from '@/mutators';
+```ts
+// api/push.ts
+
 import {schema} from '@/schema.ts';
+import {mutators} from '@/shared/mutators.ts';
 import {
   PostgresJSConnection,
   PushProcessor,
@@ -28,3 +31,18 @@ export const APIRoute = createAPIFileRoute('/api/push')({
     return Response.json(response);
   },
 });
+```
+
+```ts
+// src/mutators.ts
+import type {Transaction} from '@rocicorp/zero';
+import type {Schema} from './schema.ts';
+
+export const mutators = {
+  async upVote(tx: Transaction<Schema>, id: string) {
+    // implement me
+  },
+};
+
+export type Mutators = typeof mutators;
+```

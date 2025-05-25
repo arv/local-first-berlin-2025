@@ -1,5 +1,5 @@
 import type {Transaction} from '@rocicorp/zero';
-import type {Schema} from '../schema.ts';
+import type {Schema} from './schema.ts';
 
 export const mutators = {
   async upVote(tx: Transaction<Schema>, id: string) {

@@ -1,9 +1,8 @@
 import {ArtistLink} from '@/components/artist-link.tsx';
-import {useZero} from '@/hooks/use-zero.ts';
 import '@/index.css';
-import type {schema} from '@/schema.ts';
+import type {schema, Schema} from '@/schema.ts';
 import type {Row} from '@rocicorp/zero';
-import {useQuery} from '@rocicorp/zero/react';
+import {useQuery, useZero} from '@rocicorp/zero/react';
 import {createFileRoute} from '@tanstack/react-router';
 import {useState} from 'react';
 
@@ -26,7 +25,7 @@ function Home() {
 }
 
 function TopTen() {
-  const z = useZero();
+  const z = useZero<Schema>();
   const [topTen] = useQuery(
     z.query.album
       .where('votes', '>', 0)
@@ -91,7 +90,7 @@ function commas<T>(array: T[]): (T | ', ')[] {
 }
 
 function AllAlbums() {
-  const z = useZero();
+  const z = useZero<Schema>();
   const [textFilter, setTextFilter] = useState<string | null>(null);
   let q = z.query.artist
     .related('albums')
@@ -117,7 +116,7 @@ function AllAlbums() {
       <ul>
         {artists.slice(0, 100).map(artist => (
           <li>
-            <ArtistLink artist={artist} />
+            <ArtistLink key={artist.id} artist={artist} />
           </li>
         ))}
         {artists.length > 100 && <li>And more...</li>}

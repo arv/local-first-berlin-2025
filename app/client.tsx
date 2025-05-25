@@ -1,5 +1,5 @@
+import {mutators} from '@/mutators.ts';
 import {schema} from '@/schema.ts';
-import {mutators} from '@/shared/mutators.ts';
 import {Zero} from '@rocicorp/zero';
 import {ZeroProvider} from '@rocicorp/zero/react';
 import {StartClient} from '@tanstack/react-start';

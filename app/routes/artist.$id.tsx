@@ -1,6 +1,7 @@
 import {HomeLink} from '@/components/home-link.tsx';
-import {useZero} from '@/hooks/use-zero.ts';
-import {useQuery} from '@rocicorp/zero/react';
+import type {Mutators} from '@/mutators.ts';
+import type {Schema} from '@/schema.ts';
+import {useQuery, useZero} from '@rocicorp/zero/react';
 import {createFileRoute} from '@tanstack/react-router';
 
 export const Route = createFileRoute('/artist/$id')({
@@ -10,7 +11,7 @@ export const Route = createFileRoute('/artist/$id')({
 
 function RouteComponent() {
   const {id} = Route.useParams();
-  const z = useZero();
+  const z = useZero<Schema, Mutators>();
   const [artist, result] = useQuery(
     z.query.artist
       .where('id', id)
