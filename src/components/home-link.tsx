@@ -1,5 +1,5 @@
 import {Link} from './link.tsx';
 
 export function HomeLink() {
-  return <Link href="/">Home</Link>;
+  return <Link href="/">&larr; Home</Link>;
 }

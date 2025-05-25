@@ -29,13 +29,19 @@ function RouteComponent() {
   return (
     <>
       <HomeLink />
-      <h2>{artist.name}</h2>
+      <h1>{artist.name}</h1>
       <h2>Albums</h2>
       <ul>
         {artist.albums?.map(album => (
-          <li key={album.id}>
-            {album.title} ({album.year}) votes: {album.votes}{' '}
-            <button onClick={() => z.mutate.upVote(album.id)}>👍</button>
+          <li className="artist-page-album-detail" key={album.id}>
+            {album.title} ({album.year}){' '}
+            <span className="votes-count-large">{album.votes} votes</span>{' '}
+            <button
+              onClick={() => z.mutate.upVote(album.id)}
+              className="thumbs-up-button"
+            >
+              <i className="thumbs-up-icon">&#128077;</i>
+            </button>
           </li>
         ))}
       </ul>
