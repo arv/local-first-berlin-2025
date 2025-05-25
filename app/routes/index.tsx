@@ -16,7 +16,7 @@ export const Route = createFileRoute('/')({
 function Home() {
   return (
     <>
-      <h1>Zero Music</h1>
+      <h1>ZTunes</h1>
 
       <div className="main-container">
         <AllAlbums />

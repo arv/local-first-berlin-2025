@@ -109,6 +109,12 @@ input {
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 2rem;
+
+  &:focus {
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px #79bbff; /* Custom glow */
+    border-color: #79bbff; /* Optional: highlight border too */
+  }
 }
 
 button {
