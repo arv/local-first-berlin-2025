@@ -85,7 +85,7 @@ function AllAlbums() {
   const [artists] = useQuery(q, {ttl: '1m'});
 
   return (
-    <div className="albums">
+    <div className="artists">
       <h2>All Artists</h2>
       <input
         type="text"
