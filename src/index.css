@@ -26,12 +26,12 @@ body {
 }
 
 .top-ten,
-.albums {
+.artists {
   display: flex;
   flex-direction: column;
 }
 
-.albums {
+.artists {
   flex: 1;
 
   h2 {
