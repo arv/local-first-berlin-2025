@@ -1,5 +1,5 @@
 ```sh
-pgsql postgresql://user:password@127.0.0.1:5430/postgres
+psql postgresql://user:password@127.0.0.1:5430/postgres
 ```
 
 ```sql
