@@ -176,7 +176,7 @@ input {
 
   &:focus {
     outline: none; /* Remove default outline */
-    box-shadow: 0 0 0 3px #79bbff; /* Custom glow */
+    box-shadow: 0 0 0 3px #646cff; /* Custom glow */
     border-color: #79bbff; /* Optional: highlight border too */
   }
 }
@@ -221,6 +221,11 @@ button:focus-visible {
     color: rgba(255, 255, 255, 0.87);
     background-color: #1a1a1a;
     border: 1px solid rgba(255, 255, 255, 0.3);
+
+    &:focus {
+      box-shadow: 0 0 0 3px #79bbff;
+      border-color: #79bbff;
+    }
   }
 
   .top-ten {
